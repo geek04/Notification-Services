@@ -1,0 +1,7 @@
+{
+  "notifications": {
+    "welcome": "Welcome, {{name}}!",
+    "password_reset": "Click here to reset your password.",
+    "new_message": "You have a new message from {{sender}}."
+  }
+}
