@@ -81,7 +81,22 @@ VONAGE_API_KEY=my_vonage_api_key
 VONAGE_API_SECRET=my_vonage_api_secret
 VONAGE_FROM=my_vonage_sender_id
 
-## Postman
+
+
+
+
+---
+
+## Running the Project
+
+npm run dev
+
+- Starts both the API server and the background worker.
+
+---
+
+## API Endpoints
+### Postman
 {
 	"info": {
 		"_postman_id": "533db33d-75a6-4747-a4d4-f88c2a142e63",
@@ -216,21 +231,8 @@ VONAGE_FROM=my_vonage_sender_id
 		}
 	]
 }
-
-
----
-
-## Running the Project
-
-npm run dev
-
-- Starts both the API server and the background worker.
-
----
-
-## API Endpoints
-
 ### **Send a Notification**
+
 
 **POST** `/notifications`
 
@@ -293,7 +295,52 @@ This ensures notifications are delivered even if a provider is down or rate-limi
 
 ## Project Structure
 
-
+notification_service/
+├── src/
+│ ├── core/
+│ │ └── notifications/
+│ │ ├── services/
+│ │ │ └── notification-service.js
+│ │ ├── enums/
+│ │ │ └── notification-type.enum.js
+│ │ └── ...
+│ ├── database/
+│ │ └── repositories/
+│ │ └── notification-repository.js
+│ ├── providers/
+│ │ ├── email/
+│ │ │ ├── email-strategy.js
+│ │ │ ├── mailgun-provider.js
+│ │ │ └── sendgrid-provider.js
+│ │ ├── sms/
+│ │ │ ├── sms-strategy.js
+│ │ │ ├── twilio-provider.js
+│ │ │ └── vonage-provider.js
+│ │ └── in-app/
+│ │ └── websocket-provider.js
+│ ├── queues/
+│ │ └── bullmq/
+│ │ ├── queue-producer.js
+│ │ └── queue-consumer.js
+│ ├── routes/
+│ │ ├── notifications/
+│ │ │ └── notification-routes.js
+│ │ └── users/
+│ │ └── user-notification-routes.js
+│ ├── middleware/
+│ │ ├── logging-middleware.js
+│ │ ├── rate-limit-middleware.js
+│ │ ├── error-middleware.js
+│ │ └── auth-middleware.js
+│ ├── config/
+│ │ └── env.js
+│ ├── app.js
+│ ├── server.js
+│ └── worker.js
+├── .env.example
+├── package.json
+├── README.md
+└── Notification Service API.postman_collection.json
 
 
 
